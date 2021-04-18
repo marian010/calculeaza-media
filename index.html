@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<body align="center">
+<h1><u>Calculeaza media semestriala</u></h1>
+<div id="noteMedie"></div>
+<h1><p id="demo"></p></h1>
+<script>
+let note = [];
+let sumaNote;
+document.getElementById("demo").innerHTML = "Adauga note";
+// creeaza butoane + functia de adaugare note
+document.addEventListener('DOMContentLoaded', function() {
+    for(i = 1; i < 11; i++) {
+        let button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'button button1';
+            button.innerHTML = i;
+        let nota = i;
+            button.onclick = function adaugaNota() {
+                note.push(nota);
+                document.getElementById("demo").innerHTML = "Notele tale sunt: " + note + "<br>" + "Media ta este: " + calculeazaMedia() + "<br>";
+            }
+        let noteMedie = document.getElementById('noteMedie');
+        noteMedie.appendChild(button);
+}
+});
+// calculeaza notele din array
+function calculeazaNotele() {
+    let sumaNote = 0;
+    for(i=0;i<note.length; i++){
+        sumaNote+=note[i];
+    }
+    return sumaNote;
+}
+// calculeaza media
+function calculeazaMedia() {
+    let totalNote = note.length;
+    let sumaNote = calculeazaNotele();
+    return sumaNote / totalNote;
+}
+</script>
+<style>
+    .button {
+        background-color: #82d182; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+    .button1 {
+        border-radius: 8px;
+    }
+    </style>
+</body>
+</html>
