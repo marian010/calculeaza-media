@@ -3,11 +3,14 @@
 <body align="center">
 <h1><u>Calculeaza media semestriala</u></h1>
 <div id="noteMedie"></div>
-<h1><p id="demo"></p></h1>
+<h1><p id="note"></p></h1>
+<h1>Adauga nota teza (optional)</h1>
+<div id="noteTeza"></div>
 <script>
 let note = [];
 let sumaNote;
-document.getElementById("demo").innerHTML = "Adauga note";
+let notaTeza;
+document.getElementById("note").innerHTML = "Adauga note";
 // creeaza butoane + functia de adaugare note
 document.addEventListener('DOMContentLoaded', function() {
     for(i = 1; i < 11; i++) {
@@ -18,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let nota = i;
             button.onclick = function adaugaNota() {
                 note.push(nota);
-                document.getElementById("demo").innerHTML = "Notele tale sunt: " + note + "<br>" + "Media ta este: " + calculeazaMedia() + "<br>";
+                document.getElementById("note").innerHTML = "Notele tale sunt: " + note + "<br>" + "Media ta este: " + calculeazaMedia() + "<br>";
             }
         let noteMedie = document.getElementById('noteMedie');
         noteMedie.appendChild(button);
@@ -37,6 +40,35 @@ function calculeazaMedia() {
     let totalNote = note.length;
     let sumaNote = calculeazaNotele();
     return sumaNote / totalNote;
+}
+// butoane teza + functia de nota teza
+document.addEventListener('DOMContentLoaded', function() {
+    for(i = 1; i < 11; i++) {
+        let button = document.createElement('button');
+            button.type = 'button';
+            button.className = 'button button1';
+            button.innerHTML = i;
+        let nota = i;
+            button.onclick = function adaugaNotaTeza() {
+                notaTeza = nota; 
+                document.getElementById("note").innerHTML = "Notele tale sunt: " + note + "<br>" + "Media ta este: " + calculeazaMedia() + "<br>" + "<font color='red'>Nota teza: " + notaTeza + "<br>" + "Medie: " + calculeazaMedieFinal();
+            }
+        let noteTeza = document.getElementById('noteTeza');
+        noteTeza.appendChild(button);
+    }
+});
+// calculeaza media cu teza
+function calculeazaMedieCuTeza() {
+    let medie = calculeazaMedia();
+    let numarInmultit = 3;
+    return medie * numarInmultit + notaTeza;
+}
+// imparte media cu teza la 4
+function calculeazaMedieFinal() {
+    let sumaInmultire = calculeazaMedieCuTeza();
+    let numarImpartit = 4;
+    let mediaFinala = sumaInmultire / numarImpartit
+    return mediaFinala;
 }
 </script>
 <style>
